@@ -73,6 +73,7 @@ double calcularDistanciaMasCercana(Point puntos[], int n, const Point &pUsuario,
     {
         if (distancias[j] < distanciaMinima)
         {
+            // Se actualiza la distancia mínima y el índice
             distanciaMinima = distancias[j];
             indice = j;
         }
@@ -88,18 +89,34 @@ double calcularDistanciaMasCercana(Point puntos[], int n, const Point &pUsuario,
     return distanciaMinima;
 }
 
+/*BONO:
+Escribir una función que reciba un arreglo de puntos y devuelva la distancia total de los puntos que conforman el arreglo si estos fueran recorridos en orden.
+*/
+double calcularDistanciaTotal(Point puntos[], int n)
+{
+    double distanciaTotal = 0;
+    // Se calcula la distancia total recorriendo los puntos en orden
+    for (int i = 0; i < n - 1; i++)
+    {
+        distanciaTotal += calcularDistancia(puntos[i], puntos[i + 1]);
+    }
+    return distanciaTotal;
+}
+
 // Función para mostrar el punto más cercano y la distancia
-void mostrarResultado(Point puntos[], int indiceMasCercano, double distancia)
+void mostrarResultado(Point puntos[], int indiceMasCercano, double distancia, double distanciaTotal)
 {
     std::cout << "El punto más cercano es: (" << puntos[indiceMasCercano].x << ", " << puntos[indiceMasCercano].y << ")\n";
     std::cout << "El indice más cercano es: " << indiceMasCercano << std::endl;
     std::cout << "La distancia al punto más cercano es: " << distancia << std::endl;
+    std::cout << "La distancia total de los puntos es: " << distanciaTotal << std::endl;
 }
 
 int main()
 {
     int n;
     int indiceMasCercano;
+    double distanciaTotal;
     std::cout << "Ingrese el número de puntos (mínimo 2): ";
     // Leer el número de puntos
     std::cin >> n;
@@ -124,8 +141,11 @@ int main()
     double distancia = calcularDistanciaMasCercana(puntos, n, pUsuario, indiceMasCercano);
     indiceMasCercano;
 
+    // Calcular la distancia total
+    distanciaTotal = calcularDistanciaTotal(puntos, n);
+
     // Mostrar el resultado
-    mostrarResultado(puntos, indiceMasCercano, distancia);
+    mostrarResultado(puntos, indiceMasCercano, distancia, distanciaTotal);
 
     return 0;
 }
