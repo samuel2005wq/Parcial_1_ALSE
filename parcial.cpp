@@ -29,7 +29,7 @@ double calcularDistancia(const Point &p1, const Point &p2)
 }
 
 // Función para leer las coordenadas de varios puntos
-void leerPuntos(Point puntos[], int n)
+void leerPuntos(Point puntos[], int &n)
 {
     char respuesta;
     std::cout << "¿Desea ingresar los puntos manualmente? (s/n): ";
@@ -54,6 +54,7 @@ void leerPuntos(Point puntos[], int n)
         puntos[1] = {3, 4};  // Punto 2 (3, 4)
         puntos[2] = {6, 8};  // Punto 3 (6, 8)
         puntos[3] = {9, 12}; // Punto 4 (9, 12)
+        n = 4;
     }
 }
 
